@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@elysiajs/cron": "^1.0.3",
-    "@sentry/bun": "^7.109.0",
     "axios": "^1.6.8",
     "elysia": "^1.0.13",
     "mongoose": "^8.3.0"

@@ -52,7 +52,6 @@ const schema = new Schema<IVideo>(
     },
     description: {
       type: String,
-      required: true,
       select: true,
       trim: true,
     },

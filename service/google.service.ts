@@ -1,4 +1,3 @@
-import Sentry from "../config/sentry.config";
 import type { IYtVideoResponse } from "../types/googleType";
 import { BaseService } from "./base.service";
 
@@ -43,7 +42,6 @@ export class GoogleService extends BaseService {
         this.key = keys?.pop();
       }
       this.logger.error(err);
-      Sentry.captureException(err);
       return null;
     }
   };

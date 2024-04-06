@@ -14,12 +14,12 @@ export class BaseService {
     });
 
     this.api.interceptors.request.use((config) => {
-      this.logger.log(config.params ?? {});
+      // this.logger.log(config.params ?? {});
       return config;
     });
 
     this.api.interceptors.response.use((response) => {
-      this.logger.log(response.data ?? {});
+      // this.logger.log(response.data ?? {});
       return response;
     });
   }

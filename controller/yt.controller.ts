@@ -8,18 +8,25 @@ export default class YtController extends BaseController {
     super(YtController.name);
   }
 
-  private async handleTest(context: Context) {
+  private async searchHandler(context: Context) {
     const { set, query } = context;
     try {
-      const { search, limit, skip } = query;
+      const { search = "", limit, skip } = query;
+
+      this.logger.log("Filters : ", { skip, limit, search });
+
       const results = search
-        ? await Video.find({
-            $text: {
-              $caseSensitive: false,
-              $search: search as string,
+        ? await Video.find(
+            {
+              $text: {
+                $caseSensitive: false,
+                $search: search as any,
+              },
             },
-            score: { $meta: "textScore" },
-          })
+            {
+              score: { $meta: "textScore" },
+            }
+          )
             .sort({ score: { $meta: "textScore" } })
             .limit(Number(limit))
             .skip(Number(skip))
@@ -28,6 +35,8 @@ export default class YtController extends BaseController {
             .limit(Number(limit))
             .skip(Number(skip));
 
+      this.logger.log(skip, limit, search);
+
       return { data: results };
     } catch (error) {
       return this.returnError(set, error);
@@ -35,7 +44,7 @@ export default class YtController extends BaseController {
   }
 
   public routes() {
-    return this.app.get("/videos", this.handleTest.bind(this), {
+    return this.app.get("/videos", this.searchHandler.bind(this), {
       query: t.Object({
         search: t.Optional(t.String()),
         limit: t.String({ default: Constants.DEFAULT.LIMIT }),

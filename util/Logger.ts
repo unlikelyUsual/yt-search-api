@@ -1,4 +1,3 @@
-import Sentry from "../config/sentry.config";
 import { consoleColors } from "./enums";
 
 export default class Logger {
@@ -17,7 +16,6 @@ export default class Logger {
   }
 
   public log(...optionalParams: any[]): void {
-    Sentry.captureException(optionalParams);
     console.debug(
       consoleColors.fg.white,
       `${this.nameSpace}: `,

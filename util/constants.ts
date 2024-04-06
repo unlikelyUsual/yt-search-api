@@ -1,6 +1,6 @@
 export default class Constants {
   static DEFAULT = {
-    SKIP: 30,
+    SKIP: 0,
     LIMIT: 30,
   };
 

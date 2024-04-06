@@ -3,7 +3,7 @@ import { Http } from "../util/Http";
 import Logger from "../util/Logger";
 
 export default class BaseController {
-  private readonly logger: Logger;
+  protected readonly logger: Logger;
 
   public app: Elysia = new Elysia();
 
