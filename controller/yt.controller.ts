@@ -38,8 +38,8 @@ export default class YtController extends BaseController {
     return this.app.get("/videos", this.handleTest.bind(this), {
       query: t.Object({
         search: t.Optional(t.String()),
-        limit: t.String().default(Constants.DEFAULT.LIMIT),
-        skip: t.String().default(Constants.DEFAULT.SKIP),
+        limit: t.String({ default: Constants.DEFAULT.LIMIT }),
+        skip: t.String({ default: Constants.DEFAULT.SKIP }),
       }),
     });
   }

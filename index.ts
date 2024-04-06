@@ -1,12 +1,14 @@
 import { Elysia } from "elysia";
 import { connectDb } from "./config/db.setup";
 import YtController from "./controller/yt.controller";
+import ytCron from "./cron/yt.cron";
 
 const app = new Elysia();
 
 await connectDb();
 
-app.use(new YtController().routes());
+app.use(new YtController().routes()); // Adding search route
+app.use(ytCron); // Adding Cron to plugin
 
 //Error handler
 const PORT = process.env.PORT as string;

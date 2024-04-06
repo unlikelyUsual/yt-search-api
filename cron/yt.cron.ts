@@ -19,7 +19,7 @@ export default cron({
         query: Constants.query,
         type: "video",
         order: "date",
-        after: "",
+        after: new Date().toISOString(),
         results: Constants.DEFAULT.LIMIT,
       };
       const resp = await googleService.youtubeVideos(params);
@@ -32,12 +32,12 @@ export default cron({
       //@ts-ignore
       const videos: IVideo[] = resp.items.map((item) => ({
         videoId: item.id.videoId,
-        channelId: item.snippet.channelId,
-        channelTitle: item.snippet.channelTitle,
         title: item.snippet.title,
         description: item.snippet.description,
-        thumbnails: item.snippet.thumbnails,
+        channelId: item.snippet.channelId,
+        channelTitle: item.snippet.channelTitle,
         publishedOn: new Date(item.snippet.publishedAt),
+        thumbnails: item.snippet.thumbnails,
       }));
 
       const insertMany = await videoModel.insertMany(videos);

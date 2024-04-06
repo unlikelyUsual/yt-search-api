@@ -10,7 +10,7 @@ export default class Logger {
 
   public success(...optionalParams: any[]): void {
     console.log(
-      consoleColors.bg.green,
+      consoleColors.fg.green,
       `${this.nameSpace}: `,
       ...optionalParams
     );
@@ -19,7 +19,7 @@ export default class Logger {
   public log(...optionalParams: any[]): void {
     Sentry.captureException(optionalParams);
     console.debug(
-      consoleColors.bg.white,
+      consoleColors.fg.white,
       `${this.nameSpace}: `,
       ...optionalParams
     );
@@ -27,7 +27,7 @@ export default class Logger {
 
   public info(...optionalParams: any[]): void {
     console.info(
-      consoleColors.bg.blue,
+      consoleColors.fg.blue,
       `${this.nameSpace}: `,
       ...optionalParams
     );
@@ -35,7 +35,7 @@ export default class Logger {
 
   public warn(...optionalParams: any[]): void {
     console.warn(
-      consoleColors.bg.yellow,
+      consoleColors.fg.yellow,
       `${this.nameSpace}: `,
       ...optionalParams
     );
@@ -43,7 +43,7 @@ export default class Logger {
 
   public error(...optionalParams: any[]): void {
     console.error(
-      consoleColors.bg.red,
+      consoleColors.fg.red,
       `${this.nameSpace}: `,
       ...optionalParams
     );
