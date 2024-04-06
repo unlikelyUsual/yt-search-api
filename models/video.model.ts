@@ -6,7 +6,7 @@ export interface IVideo extends Document {
   description: string;
   channelId: string;
   channelTitle: string;
-  publishedAt: Date;
+  publishedOn: Date;
   thumbnails: IThumbnail[];
 }
 
@@ -64,10 +64,10 @@ const schema = new Schema<IVideo>(
       select: true,
       trim: true,
     },
-    publishedAt: {
+    publishedOn: {
       type: Date,
       required: true,
-      index: true, // Create index on this field
+      index: true,
     },
     thumbnails: [itemSchema],
   },
@@ -75,5 +75,11 @@ const schema = new Schema<IVideo>(
     timestamps: true,
   }
 );
+
+//text index on text fields
+schema.index({
+  title: "text",
+  description: "text",
+});
 
 export default model<IVideo>("videos", schema);
