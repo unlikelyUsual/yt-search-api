@@ -1,16 +1,15 @@
-FROM oven/bun:latest
+FROM oven/bun:1.0
 
-# Set the working directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY package.json tsconfig.json .env bun.lockb ./
+COPY package.json package.json
 
-COPY src ./
-
-# Expose port 3000
-EXPOSE 3000
+COPY bun.lockb bun.lockb
 
 RUN bun install
 
-# Command to run the application
-CMD ["bun", "run", "dev"]
+COPY . .
+
+EXPOSE 3000
+
+ENTRYPOINT ["bun", "index.ts"]

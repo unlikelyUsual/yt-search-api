@@ -3,7 +3,7 @@ version: "3.8"
 services:
   mongo:
     container_name: mongo
-    image: mongo:4.2.1-bionic
+    image: mongo
     restart: always
     ports:
       - "27017:27017"
@@ -18,9 +18,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: base
     restart: always
-    env_file: .env.dev
+    env_file: .env
     ports:
       - 3000:3000
     links:

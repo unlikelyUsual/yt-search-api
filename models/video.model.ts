@@ -40,7 +40,6 @@ const schema = new Schema<IVideo>(
     videoId: {
       type: String,
       required: true,
-      unique: true,
       select: true,
       trim: true,
     },

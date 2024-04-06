@@ -4,5 +4,5 @@ export default class Constants {
     LIMIT: 30,
   };
 
-  static query = "anime";
+  static query = "cricket";
 }
