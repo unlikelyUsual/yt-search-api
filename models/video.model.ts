@@ -7,7 +7,11 @@ export interface IVideo extends Document {
   channelId: string;
   channelTitle: string;
   publishedOn: Date;
-  thumbnails: IThumbnail[];
+  thumbnails: {
+    default: IThumbnail;
+    medium: IThumbnail;
+    high: IThumbnail;
+  };
 }
 
 export interface IThumbnail extends Document {
@@ -16,7 +20,7 @@ export interface IThumbnail extends Document {
   url: string;
 }
 
-const itemSchema = new Schema<IThumbnail>({
+const thumbnailSchema = new Schema<IThumbnail>({
   height: {
     type: Number,
     required: true,
@@ -69,7 +73,11 @@ const schema = new Schema<IVideo>(
       required: true,
       index: true,
     },
-    thumbnails: [itemSchema],
+    thumbnails: {
+      default: thumbnailSchema,
+      medium: thumbnailSchema,
+      high: thumbnailSchema,
+    },
   },
   {
     timestamps: true,

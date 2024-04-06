@@ -1,4 +1,5 @@
 import Sentry from "../config/sentry.config";
+import type { IYtVideoResponse } from "../types/googleType";
 import { BaseService } from "./base.service";
 
 const keys = process.env.YT_KEY?.split(",");
@@ -17,10 +18,10 @@ export class GoogleService extends BaseService {
     order: string;
     after: string;
     results: number;
-  }) => {
+  }): Promise<IYtVideoResponse | null> => {
     try {
       const { part, query, type, order, after, results } = params;
-      const res = await this.api.get("youtube/v3/search", {
+      const res = await this.api.get<IYtVideoResponse>("youtube/v3/search", {
         params: {
           key: this.key,
           part,
@@ -32,7 +33,7 @@ export class GoogleService extends BaseService {
         },
       });
 
-      return res;
+      return res.data;
     } catch (err) {
       if (
         //@ts-ignore
@@ -43,7 +44,7 @@ export class GoogleService extends BaseService {
       }
       this.logger.error(err);
       Sentry.captureException(err);
-      return {};
+      return null;
     }
   };
 }
