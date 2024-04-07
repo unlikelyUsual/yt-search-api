@@ -1,5 +1,12 @@
 # yt-search-api
 
+## Tech
+
+- Bun Runtime
+- Elysia Js for http server
+- MongoDb
+- Docker
+
 ## Run on local system
 
 1.  Rename `.env.dev` as `.env`.
