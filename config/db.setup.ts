@@ -9,7 +9,7 @@ const logger = new Logger("Database");
 export const connectDb = async () => {
   return await mongoose
     .connect(
-      `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@localhost:mongo/${process.env.MONGO_DB}?retryWrites=true&w=majority`
+      `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@mongo:mongo/${process.env.MONGO_DB}?retryWrites=true&w=majority`
     )
     .then(() => {
       logger.log("successfully connected to the database");
