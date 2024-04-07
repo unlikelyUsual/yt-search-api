@@ -7,9 +7,15 @@ import Constants from "../util/constants";
 const logger = new Logger("Cron");
 const googleService = new GoogleService();
 
+/**
+ * Defining CRON plugin
+ * name : can be available in context
+ * pattern : every 10 sec
+ * Fetch api and insert many records every ten seconds
+ */
 export default cron({
   name: "refreshVids",
-  pattern: "*/10 * * * * *", //or Patterns.EVERY_10_SECONDS
+  pattern: "*/10 * * * * *",
   async run() {
     logger.log(`Running the cron!`);
     try {

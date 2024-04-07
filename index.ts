@@ -8,7 +8,7 @@ const app = new Elysia();
 await connectDb();
 
 app.use(new YtController().routes()); // Adding search route
-app.use(ytCron); // Adding Cron to plugin
+app.use(ytCron); // Adding Cron plugin
 
 //Error handler
 const PORT = process.env.PORT as string;

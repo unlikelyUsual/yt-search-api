@@ -3,6 +3,10 @@ import { BaseService } from "./base.service";
 
 const keys = process.env.YT_KEY?.split(",");
 
+/**
+ * Google service
+ * All api's related to google will be here
+ */
 export class GoogleService extends BaseService {
   private key: string | undefined = keys?.pop();
 

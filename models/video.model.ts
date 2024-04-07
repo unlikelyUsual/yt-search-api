@@ -82,7 +82,7 @@ const schema = new Schema<IVideo>(
   }
 );
 
-//text index on text fields
+//$text index on title and description fields
 schema.index({
   title: "text",
   description: "text",

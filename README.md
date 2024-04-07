@@ -2,7 +2,7 @@
 
 ## Run on local system
 
-1.  Copy the `.env.dev` and rename as `.env`.
+1.  Rename `.env.dev` as `.env`.
 
 2.  Fill up the values
 
@@ -14,21 +14,29 @@
 
 6.  Run a mongo db container in parallel
 
+```shell
+docker run -it -p 27017:27017 \
+    -e MONGO_INITDB_ROOT_USERNAME=user \
+    -e MONGO_INITDB_ROOT_PASSWORD=password \
+    -e MONGO_INITDB_DATABASE=dbName \
+    mongo:latest
+```
+
 ## Run with docker
 
-1.  Copy the `.env.dev` and rename as `.env`.
+1.  Rename `.env.dev` as `.env`.
 
 2.  Fill up the values
 
 3.  Run `docker compose up`
 
-#### Info
+## Info
 
-- **GET:http://localhost:3000/videos** : Used both as search with keyword and also to get rows
+- **GET:http://localhost:3000/api/v1/videos** : Used both as search with keyword and also to get rows
 
-- **Add multiple keys** - Use csv format for multiple keys in YT_KEY `.env`
+- **Add multiple keys** - Use csv format for multiple keys in YT_KEY `.env` like key1, key2, key3
 
-#### GET Api Params
+### GET Api Params
 
 - **search** : for keyword match
 

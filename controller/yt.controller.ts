@@ -44,12 +44,14 @@ export default class YtController extends BaseController {
   }
 
   public routes() {
-    return this.app.get("/videos", this.searchHandler.bind(this), {
-      query: t.Object({
-        search: t.Optional(t.String()),
-        limit: t.String({ default: Constants.DEFAULT.LIMIT }),
-        skip: t.String({ default: Constants.DEFAULT.SKIP }),
-      }),
-    });
+    return this.app.group("api/v1", (app) =>
+      app.get("/videos", this.searchHandler.bind(this), {
+        query: t.Object({
+          search: t.Optional(t.String()),
+          limit: t.String({ default: Constants.DEFAULT.LIMIT }),
+          skip: t.String({ default: Constants.DEFAULT.SKIP }),
+        }),
+      })
+    );
   }
 }

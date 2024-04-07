@@ -11,6 +11,7 @@ export default class BaseController {
     this.logger = new Logger(namespace);
   }
 
+  // API Error handler
   protected returnError(
     set: { status?: number | Http },
     err: unknown | string,
